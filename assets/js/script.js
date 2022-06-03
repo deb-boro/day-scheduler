@@ -1,7 +1,9 @@
 // GIVEN I am using a daily planner to create a schedule
 // WHEN I open the planner
+
 // THEN the current day is displayed at the top of the calendar
 // WHEN I scroll down
+
 // THEN I am presented with time blocks for standard business hours
 // WHEN I view the time blocks for that day
 // THEN each time block is color-coded to indicate whether it is in the past, present, or future
@@ -15,18 +17,18 @@
 var arrTimeBlock = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18]
 var removeAddColorClass = function (i, hourDiff) {
   if (hourDiff >= 1) {
-    $('.color-block-' + i).removeClass('bg-danger')
-    $('.color-block-' + i).removeClass('bg-secondary')
-    $('.color-block-' + i).addClass('bg-success')
+    $('.color-block-' + i).removeClass('past')
+    $('.color-block-' + i).removeClass('present')
+    $('.color-block-' + i).addClass('future')
   } else if (hourDiff == 0) {
-    $('.color-block-' + i).removeClass('bg-success')
-    $('.color-block-' + i).removeClass('bg-secondary')
-    $('.color-block-' + i).addClass('bg-danger')
+    $('.color-block-' + i).removeClass('future')
+    $('.color-block-' + i).removeClass('past')
+    $('.color-block-' + i).addClass('present')
   } //(hourDiff < 0)
   else {
-    $('.color-block-' + i).removeClass('bg-success')
-    $('.color-block-' + i).removeClass('bg-danger')
-    $('.color-block-' + i).addClass('bg-secondary')
+    $('.color-block-' + i).removeClass('future')
+    $('.color-block-' + i).removeClass('present')
+    $('.color-block-' + i).addClass('past')
   }
 }
 
@@ -58,7 +60,6 @@ var saveEventInfo = function (arrLatestEventInfo) {
 
 var createTask = function (key, index, textEventInfo) {
   var className = 'color-block-' + index
-  console.log(className)
   var textInputEl = $('.' + className).children('p')
   var textEventInfo = textInputEl.text(textEventInfo)
 }
